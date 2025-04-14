@@ -27,4 +27,6 @@ public class User {
 
     @NonNull
     private String email;
+
+    private List<String> roles;
 }
