@@ -52,5 +52,23 @@ public class UserService {
     }
 
 
+    //to delete an user
+    public List<User> deleteByUserName(String userName){
+        List<User> users = userRepository.findAll();
+
+        users.removeIf(user -> {
+            if(user.getUserName().equals(userName)){
+                userRepository.delete(user);
+                return true;
+            }
+            return false;
+        });
+
+        return null;
+    }
+
+
+
+
 
 }
