@@ -1,7 +1,9 @@
 package com.example.taskManagerAppBackend.Task.Manager.App.Service;
 
 import com.example.taskManagerAppBackend.Task.Manager.App.Entity.Task;
+import com.example.taskManagerAppBackend.Task.Manager.App.Entity.User;
 import com.example.taskManagerAppBackend.Task.Manager.App.Repository.TaskRepository;
+import com.example.taskManagerAppBackend.Task.Manager.App.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +16,22 @@ public class TaskService {
     private TaskRepository taskRepository;
 
 
-    public Task saveTask(Task task){
-        Task saved = taskRepository.save(task);
+    @Autowired
+    private UserService userService;
 
-        return saved;
+    @Autowired
+    private UserRepository userRepository;
+
+    //to create the task.
+    public Task saveTask(Task task, String userName){
+        User user = userRepository.findByUserName(userName);
+        Task saveInput = taskRepository.save(task);
+        user.getAllTasks().add(saveInput);
+        userService.saveEntry(user);
+
+        return null;
     }
+
+
+
 }
