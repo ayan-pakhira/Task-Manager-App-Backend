@@ -67,6 +67,14 @@ public class UserService {
         return null;
     }
 
+    //to delete all the users one at a time
+    public List<User> deleteAll(){
+        List<User> toDelete = userRepository.findAll();
+        userRepository.deleteAll(toDelete);
+
+        return null;
+    }
+
 
 
 

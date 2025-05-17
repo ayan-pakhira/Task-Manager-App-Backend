@@ -25,33 +25,33 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
 
-    @PostMapping("/login-page")
-    public ResponseEntity<?> loginPage(@RequestBody UserDTO request, HttpServletRequest httpRequest){
+//    @PostMapping("/login")
+//    public ResponseEntity<?> loginPage(@RequestBody UserDTO request, HttpServletRequest httpRequest){
+//
+//        try{
+//
+//            Authentication auth = authenticationManager.authenticate(
+//                    new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword())
+//            );
+//
+//            SecurityContextHolder.getContext().setAuthentication(auth);
+//            HttpSession session = httpRequest.getSession(true);
+//
+//            return ResponseEntity.ok(Map.of(
+//                    "message", "Login Successful",
+//                    "sessionId", session.getId()
+//            ));
+//
+//        }catch(Exception e){
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
+//                    "error",
+//                    "invalid username and password"
+//            ));
+//        }
+//    }
 
-        try{
 
-            Authentication auth = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword())
-            );
-
-            SecurityContextHolder.getContext().setAuthentication(auth);
-            HttpSession session = httpRequest.getSession(true);
-
-            return ResponseEntity.ok(Map.of(
-                    "message", "Login Successful",
-                    "sessionId", session.getId()
-            ));
-
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of(
-                    "error",
-                    "invalid username and password"
-            ));
-        }
-    }
-
-
-    @PostMapping("/logout-page")
+    @PostMapping("/logout")
     public ResponseEntity<?> logoutPage(HttpServletRequest httpRequest){
         HttpSession session = httpRequest.getSession(false);
 
